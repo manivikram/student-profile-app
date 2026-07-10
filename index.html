@@ -45,6 +45,50 @@
   .hero h1{ font-family: var(--display); font-weight: 700; font-size: 26px; line-height: 1.15;
     margin: 0; color: var(--text); }
   .hero p.sub{ margin: 6px 0 0; font-size: 13.5px; color: var(--muted); }
+  .identity{ display:flex; align-items:center; gap:14px; padding: 20px 24px 0; }
+  .avatar{ width: 58px; height:58px; border-radius: 18px;
+    background: linear-gradient(135deg, var(--indigo), #4b56c9);
+    display:flex; align-items:center; justify-content:center; font-family: var(--display);
+    font-weight:700; font-size: 20px; color: white; flex-shrink:0;
+    box-shadow: 0 8px 20px -6px rgba(108,124,240,0.6); }
+  .identity .name{ font-family: var(--display); font-weight: 600; font-size: 18px; color: var(--text); }
+  .identity .chips{ display:flex; gap:6px; margin-top:6px; flex-wrap:wrap; }
+  .chip{ font-size: 11px; padding: 4px 9px; border-radius: 999px; background: var(--panel-2);
+    border: 1px solid var(--line); color: var(--muted); display:flex; align-items:center; gap:4px; }
+  .chip.verified{ color: var(--mint); border-color: rgba(62,217,184,0.3); background: rgba(62,217,184,0.08); }
+  .id-strip{ margin: 20px 24px 0; background: var(--panel-2); border: 1px solid var(--line);
+    border-radius: 16px; padding: 14px 16px; position: relative; overflow:hidden; }
+  .id-strip::before{ content:""; position:absolute; top:0; right:0; width:70px; height:70px;
+    background: radial-gradient(circle, rgba(108,124,240,0.25), transparent 70%); }
+  .id-strip .id-row{ display:flex; justify-content:space-between; align-items:center; margin-bottom: 10px; }
+  .id-strip .id-label{ font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 1px; }
+  .id-strip .id-number{ font-family: var(--mono); font-size: 13px; color: var(--text); letter-spacing: 1px; }
+  .barcode{ display:flex; align-items:flex-end; gap:2px; height: 32px; }
+  .barcode span{ display:block; width: 3px; background-color: var(--text); opacity: 0.85; }
+  .barcode span:nth-child(3n){ height: 32px; }
+  .barcode span:nth-child(3n+1){ height: 22px; }
+  .barcode span:nth-child(3n+2){ height: 28px; }
+  .section{ padding: 20px 24px 4px; }
+  .section-label{ font-family: var(--mono); font-size: 11px; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+  .row{ display:flex; align-items:center; gap:12px; padding: 12px 14px; background: var(--panel-2);
+    border: 1px solid var(--line); border-radius: 14px; margin-bottom: 8px; }
+  .row .icon{ width: 34px; height:34px; border-radius: 10px; background: var(--indigo-soft);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size: 15px; }
+  .row .info .label{ font-size: 10.5px; color: var(--muted); letter-spacing: 0.3px;
+    text-transform: uppercase; font-family: var(--mono); }
+  .row .info .value{ font-size: 14px; color: var(--text); margin-top: 2px; font-weight: 500; }
+  .navbar{ display:flex; justify-content:space-around; align-items:center; padding: 14px 20px 22px;
+    margin-top: 12px; border-top: 1px solid var(--line); }
+  .navbar .nav-item{ display:flex; flex-direction:column; align-items:center; gap:4px;
+    color: var(--muted); font-size: 10px; }
+  .navbar .nav-item .dot-icon{ width: 20px; height:20px; display:flex; align-items:center;
+    justify-content:center; font-size: 15px; }
+  .navbar .nav-item.active{ color: var(--mint); }
+  .navbar .nav-item.active .dot-icon{ background: rgba(62,217,184,0.12); border-radius: 8px; }
+  @media (prefers-reduced-motion: no-preference){ .device{ animation: rise 0.5s ease-out; } }
+  @keyframes rise{ from{ opacity:0; transform: translateY(14px); } to{ opacity:1; transform: translateY(0); } }
+  .row:focus-within, .chip:focus-visible{ outline: 2px solid var(--mint); outline-offset: 2px; }
 </style>
 </head>
 <body>
@@ -68,6 +112,59 @@
       <div class="eyebrow">● Welcome back</div>
       <h1>Welcome to the<br>Student Profile App</h1>
       <p class="sub">Your campus ID, course info, and contact details — all in one place.</p>
+    </section>
+
+    <div class="identity">
+      <div class="avatar">MV</div>
+      <div>
+        <div class="name">ManiVikram</div>
+        <div class="chips">
+          <span class="chip">🎓 M.S. Data Science &amp; AI</span>
+          <span class="chip verified">✓ Verified</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="id-strip">
+      <div class="id-row">
+        <span class="id-label">STUDENT ID</span>
+        <span class="id-number">DSAI-2026-01847</span>
+      </div>
+      <div class="barcode">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="section-label">Student Details</div>
+      <div class="row">
+        <div class="icon">👤</div>
+        <div class="info">
+          <div class="label">Name</div>
+          <div class="value">ManiVikram</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="icon">📘</div>
+        <div class="info">
+          <div class="label">Course</div>
+          <div class="value">Masters in Data Science and Artificial Intelligence</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="icon">📍</div>
+        <div class="info">
+          <div class="label">Location</div>
+          <div class="value">Atlanta, GA</div>
+        </div>
+      </div>
     </section>
 
   </main>

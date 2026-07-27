@@ -1,22 +1,31 @@
 pipeline {
     agent any
+
     stages {
-        stage('Checkout') {
+        stage('Install Python') {
             steps {
-                echo 'Code checked out from GitHub via SCM'
+                sh '''
+                    apt-get update
+                    apt-get install -y python3 python3-venv python3-pip
+                    python3 --version
+                '''
             }
         }
-        stage('Verify') {
+
+        stage('Verify Installation') {
             steps {
-                sh 'ls -la'
-                sh 'date'
+                sh 'which python3'
+                sh 'python3 -m pip --version'
             }
         }
-        stage('Info') {
-            steps {
-                echo "Build number: ${BUILD_NUMBER}"
-                echo "Job name: ${JOB_NAME}"
-            }
+    }
+
+    post {
+        success {
+            echo '✅ Python installed successfully via Jenkinsfile'
+        }
+        failure {
+            echo '❌ Installation failed — check console output'
         }
     }
 }
